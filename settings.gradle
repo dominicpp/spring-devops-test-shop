@@ -4,4 +4,10 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+dependencyResolutionManagement {
+	repositories {
+		mavenCentral()
+		maven { url = 'https://repo.spring.io/snapshot' }
+	}
+}
 rootProject.name = 'shop'
