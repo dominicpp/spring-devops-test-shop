@@ -22,7 +22,9 @@ services:
       - postgres
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
     ports:
       - "8090:8080"
       - "50000:50000"
