@@ -1,7 +1,7 @@
 package com.dominic.shop.controller;
 
-import com.dominic.shop.dto.ProductDto;
-import com.dominic.shop.service.ProductService;
+import com.dominic.shop.dto.OrderDto;
+import com.dominic.shop.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
-public class ProductController {
+@RequestMapping("/orders")
+public class OrderController {
 
-    private final ProductService service;
+    private final OrderService service;
 
-    public ProductController(ProductService service) {
+    public OrderController(OrderService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ProductDto create(@RequestBody ProductDto dto) {
+    public OrderDto create(@RequestBody OrderDto dto) {
         return service.create(dto);
     }
 
     @GetMapping
-    public List<ProductDto> getAll() {
+    public List<OrderDto> getAll() {
         return service.getAll();
     }
 
