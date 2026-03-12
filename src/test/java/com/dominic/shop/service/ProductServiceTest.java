@@ -26,11 +26,7 @@ class ProductServiceTest {
 
     @Test
     void should_returnProduct_when_productIsCreated() {
-        Product saved = new Product();
-        saved.setId(1L);
-        saved.setName("Laptop");
-        saved.setPrice(999.99);
-        when(repository.save(any())).thenReturn(saved);
+        when(repository.save(any())).thenReturn(new Product(1L, "Laptop", 999.99));
 
         ProductDto result = service.create(new ProductDto(null, "Laptop", 999.99));
 
@@ -41,17 +37,10 @@ class ProductServiceTest {
 
     @Test
     void should_returnAllProducts_when_productsExist() {
-        Product p1 = new Product();
-        p1.setId(1L);
-        p1.setName("Laptop");
-        p1.setPrice(999.99);
-
-        Product p2 = new Product();
-        p2.setId(2L);
-        p2.setName("Mouse");
-        p2.setPrice(29.99);
-
-        when(repository.findAll()).thenReturn(List.of(p1, p2));
+        when(repository.findAll()).thenReturn(List.of(
+                new Product(1L, "Laptop", 999.99),
+                new Product(2L, "Mouse", 29.99)
+        ));
 
         List<ProductDto> result = service.getAll();
 

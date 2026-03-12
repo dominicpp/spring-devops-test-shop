@@ -34,8 +34,8 @@ pipeline {
             steps {
                 sh '''
                     cp /root/.kube/config /tmp/kubeconfig
-                    sed -i 's|server: https://.*|server: https://192.168.49.2:8443|' /tmp/kubeconfig
-                    sed -i 's|/Users/dominic.brien/.minikube/|/root/.minikube/|g' /tmp/kubeconfig
+                    sed -i -e 's|server: https://.*|server: https://192.168.49.2:8443|' \
+                           -e 's|/Users/dominic.brien/.minikube/|/root/.minikube/|g' /tmp/kubeconfig
                     export KUBECONFIG=/tmp/kubeconfig
                     docker save shop:latest | docker exec -i minikube docker load
                     kubectl apply -f k8s/
