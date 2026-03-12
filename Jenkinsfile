@@ -6,31 +6,31 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('📥 Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Build') {
+        stage('🔨 Build') {
             steps {
                 sh './gradlew build -x test'
             }
         }
 
-        stage('Test') {
+        stage('✅ Test') {
             steps {
                 sh './gradlew test'
             }
         }
 
-        stage('Docker Build') {
+        stage('🐳 Docker Build') {
             steps {
                 sh 'docker build -t shop:latest .'
             }
         }
 
-        stage('Deploy to Minikube') {
+        stage('🚀 Deploy to Minikube') {
             steps {
                 sh '''
                     cp /root/.kube/config /tmp/kubeconfig
